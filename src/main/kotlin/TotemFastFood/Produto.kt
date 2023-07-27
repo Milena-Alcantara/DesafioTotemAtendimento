@@ -15,7 +15,7 @@ open class Produto() {
 
     companion object{
         private var codigoAtual = 0
-        private var produtos = mutableListOf<Produto>()
+        internal var produtos = mutableListOf<Produto>()
         private var numeroPedido = 499
 
         fun adicioarAoCarrinho(objeto: Produto,quantidade: Int): MutableList<Produto>{
@@ -87,7 +87,7 @@ open class Produto() {
                     println(ConsoleMenssages.pedeNovaQuantidade)
                     item.quantidade = readln().toInt()
                     println(ConsoleMenssages.carrinhoAtualizado)
-                    visualizarCarrinho()
+                    visualizarCarrinho(produtos)
                     return
                 }
             }
@@ -99,16 +99,17 @@ open class Produto() {
                    produtos.remove(item)
                     println(ConsoleMenssages.removido)
                    println(ConsoleMenssages.carrinhoAtualizado)
-                   visualizarCarrinho()
+                   visualizarCarrinho(produtos)
                    return
                 }
             }
             println(ConsoleMenssages.codNaoEncontrado)
         }
-        fun finalizarPedidoCartao(){
+        fun finalizarPedidoCartao():Int{
                 numeroPedido++
                 println("${ConsoleMenssages.pedido} $numeroPedido")
                 println(ConsoleMenssages.msgDeFinalizacao)
+            return numeroPedido
         }
         fun finalizarPedidoDinheiro(valorCliente: Double,totalCarrinho: Double):Boolean{
             println("${ConsoleMenssages.msgValorCliente} R$ $valorCliente")
@@ -133,7 +134,7 @@ open class Produto() {
             Thread.sleep(3000)
         }
 
-        fun visualizarCarrinho(): Double{
+        fun visualizarCarrinho(carrinho: MutableList<Produto>): Double{
             var valorTotal = 0.0
             for ((indice,produto) in produtos.withIndex()){
                 valorTotal += produto.valorUnitario * produto.quantidade

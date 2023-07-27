@@ -44,7 +44,7 @@ class Menus {
                         }
                         var novoObjeto = Xburguer()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     2->{
                         println(ConsoleMenssages.pedeQuantidade)
@@ -55,7 +55,7 @@ class Menus {
                         }
                         var novoObjeto = XSalada()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     3->{println(ConsoleMenssages.pedeQuantidade)
                         var quantidade =  readln().toIntOrNull() ?:0
@@ -65,7 +65,7 @@ class Menus {
                         }
                         var novoObjeto = ComboSolteiro1()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     4->{
                         println(ConsoleMenssages.pedeQuantidade)
@@ -76,7 +76,7 @@ class Menus {
                         }
                         var novoObjeto = ComboSolteiro2()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     5->{
                         println(ConsoleMenssages.pedeQuantidade)
@@ -87,7 +87,7 @@ class Menus {
                         }
                         var novoObjeto = ComboCasal()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     6->{
                         println(ConsoleMenssages.pedeQuantidade)
@@ -98,7 +98,7 @@ class Menus {
                         }
                         var novoObjeto = ComboFamilia()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     else ->{ println(ConsoleMenssages.opcInvalida)}
                 }
@@ -125,7 +125,7 @@ class Menus {
                         }
                         var novoObjeto = Refrigerante()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     2->{
                         println(ConsoleMenssages.pedeQuantidade)
@@ -136,7 +136,7 @@ class Menus {
                         }
                         var novoObjeto = Suco()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     else->{println(ConsoleMenssages.opcInvalida)}
                 }
@@ -163,7 +163,7 @@ class Menus {
                         }
                         var novoObjeto = MilkShake()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     2->{
                         println(ConsoleMenssages.pedeQuantidade)
@@ -174,7 +174,7 @@ class Menus {
                         }
                         var novoObjeto = Casquinha()
                         Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        Produto.visualizarCarrinho(Produto.produtos)
                     }
                     else->{println(ConsoleMenssages.opcInvalida)}
                 }
@@ -201,7 +201,7 @@ class Menus {
                             println(ConsoleMenssages.codigoValido)
                             codigo = readln().toIntOrNull()
                         }
-                       Produto.editarItem(codigo)
+                       println(Produto.editarItem(codigo))
                        menuConfirmarPedido()
                     }
                     3-> {
@@ -242,7 +242,7 @@ class Menus {
                 when(opc){
                     1,2,3->{
                         if(Produto.verificarCarririho()){
-                            Produto.visualizarCarrinho()
+                            Produto.visualizarCarrinho(Produto.produtos)
                             Produto.finalizarPedidoCartao()
                             Produto.limparCarrinho()
                             Produto.esperar()
@@ -258,7 +258,7 @@ class Menus {
                         if (Produto.verificarCarririho()){
                             println(ConsoleMenssages.pedeValorDinheiro)
                             var valorCliente = readln().toDoubleOrNull() ?:0.0
-                            if (!Produto.finalizarPedidoDinheiro(valorCliente,Produto.visualizarCarrinho())){
+                            if (!Produto.finalizarPedidoDinheiro(valorCliente,Produto.visualizarCarrinho(Produto.produtos))){
                                 println(ConsoleMenssages.verificarPagamento)
                                 verificarPagamento(readln().toInt())
                                 Produto.limparCarrinho()
