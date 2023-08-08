@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class ProdutoTest {
-    val xburguer = Xburguer("Xburger", 201, 10.00, 0)
+    private val xburguer = Xburguer("Xburger", 201, 10.00, 0)
     @Test
     fun deveRetornarConfirmacaoDeAdcionadoAoCarrinho(){
         val verificacao = Produto.adicioarAoCarrinho(xburguer, 2)
