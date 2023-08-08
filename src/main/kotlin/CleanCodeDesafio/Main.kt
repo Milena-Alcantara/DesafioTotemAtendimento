@@ -1,4 +1,4 @@
-package TotemFastFood
+package CleanCodeDesafio
 
 import CleanCodeDesafio.Menus
 
