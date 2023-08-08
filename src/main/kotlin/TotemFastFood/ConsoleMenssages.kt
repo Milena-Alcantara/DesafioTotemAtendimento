@@ -33,6 +33,7 @@ package TotemFastFood
     const val msgTroco = "Visualize seu troco: "
     const val valorInsuficiente = "Valor informado é insuficente para realizar o pagamento."
     const val pedidoCancelado = "Pedido Cancelado com Sucesso! "
+    const val valorTotal = "Total: R$"
 
     // Descrições dos Combos
    const val comboSolteiro1 = "Acompanha:\n\t1 X-Burguer\n\t1 Refrigerante"

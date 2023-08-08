@@ -1,5 +1,21 @@
 package TotemFastFood
 
+import CleanCodeDesafio.*
+import CleanCodeDesafio.ControlCart.Companion.addToCart
+import CleanCodeDesafio.ControlCart.Companion.checkCart
+import CleanCodeDesafio.ControlCart.Companion.clearCart
+import CleanCodeDesafio.ControlCart.Companion.editItemInCart
+import CleanCodeDesafio.ControlCart.Companion.removeItemInCart
+import CleanCodeDesafio.ControlCart.Companion.showCart
+import CleanCodeDesafio.FlashFoodSystem.Companion.receiveInputs
+import CleanCodeDesafio.FlashFoodSystem.Companion.requestProductCode
+import CleanCodeDesafio.FlashFoodSystem.Companion.requestQuantity
+import CleanCodeDesafio.FlashFoodSystem.Companion.waitSystem
+import CleanCodeDesafio.MilkShake
+import CleanCodeDesafio.OrderControl.Companion.finishOrderWithCard
+import CleanCodeDesafio.OrderControl.Companion.validateCustomerValue
+import CleanCodeDesafio.XSalada
+import CleanCodeDesafio.Xburguer
 import kotlin.NumberFormatException
 
 class Menus {
@@ -7,9 +23,7 @@ class Menus {
         do {
             var opc = 0
             try {
-                println(ConsoleMenssages.msgMenuprincipal)
-                var opc = readln().toInt()
-
+                opc = receiveInputs()
                 when(opc){
                     1->{menuLanches()
                         menuConfirmarPedido()}
@@ -18,8 +32,7 @@ class Menus {
                     3->{menuSobremesas()
                     menuConfirmarPedido()}
                     else->{ println(ConsoleMenssages.opcInvalida) }
-                }
-            }catch (erro1: NumberFormatException){
+                }            }catch (erro1: NumberFormatException){
                 erro1.printStackTrace()
                 println(ConsoleMenssages.msgExcecao)
             }
@@ -27,7 +40,7 @@ class Menus {
         }while (opc !in 1..2)
 
     }
-    fun menuLanches(){
+    private fun menuLanches(){
         do {
             var opc = 0
             try {
@@ -36,69 +49,34 @@ class Menus {
 
                 when(opc){
                     1->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = Xburguer()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = Xburguer(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     2->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = XSalada()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = XSalada(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
-                    3->{println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = ComboSolteiro1()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                    3->{
+                        var newObject = CombnationOne(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     4->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = ComboSolteiro2()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = CombnationTwo(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     5->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = ComboCasal()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = CombnationThree(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     6->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = ComboFamilia()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = CombnationFour(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     else ->{ println(ConsoleMenssages.opcInvalida)}
                 }
@@ -117,26 +95,14 @@ class Menus {
 
                 when(opc){
                     1->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = Refrigerante()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = Refrigerator(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     2->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = Suco()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = Juice(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     else->{println(ConsoleMenssages.opcInvalida)}
                 }
@@ -155,26 +121,14 @@ class Menus {
                 opc = readln().toInt()
                 when(opc){
                     1->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = MilkShake()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = MilkShake(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     2->{
-                        println(ConsoleMenssages.pedeQuantidade)
-                        var quantidade =  readln().toIntOrNull() ?:0
-                        while (quantidade==0 || quantidade<0){
-                            println(ConsoleMenssages.quantVAzia)
-                            quantidade =  readln().toIntOrNull() ?:0
-                        }
-                        var novoObjeto = Casquinha()
-                        Produto.adicioarAoCarrinho(novoObjeto,quantidade)
-                        Produto.visualizarCarrinho()
+                        var newObject = IceCream(quantity = requestQuantity())
+                        addToCart(newObject)
+                        showCart()
                     }
                     else->{println(ConsoleMenssages.opcInvalida)}
                 }
@@ -195,23 +149,13 @@ class Menus {
                 when(opc){
                     1->{menuPrincipal()}
                     2-> {
-                        println(ConsoleMenssages.pedeCodigo)
-                        var codigo = readln().toIntOrNull()
-                        while (codigo == null){
-                            println(ConsoleMenssages.codigoValido)
-                            codigo = readln().toIntOrNull()
-                        }
-                       Produto.editarItem(codigo)
+                       editItemInCart(requestProductCode(), requestQuantity())
+                        showCart()
                        menuConfirmarPedido()
                     }
                     3-> {
-                        println(ConsoleMenssages.pedeCodigo)
-                        var codigo = readln().toIntOrNull()
-                        while (codigo == null){
-                            println(ConsoleMenssages.codigoValido)
-                            codigo = readln().toIntOrNull()
-                        }
-                        Produto.removerItem(codigo)
+                        removeItemInCart(requestProductCode())
+                        showCart()
                         menuConfirmarPedido()
                     }
                     4-> {
@@ -241,11 +185,11 @@ class Menus {
             try {
                 when(opc){
                     1,2,3->{
-                        if(Produto.verificarCarririho()){
-                            Produto.visualizarCarrinho()
-                            Produto.finalizarPedidoCartao()
-                            Produto.limparCarrinho()
-                            Produto.esperar()
+                        if(checkCart()){
+                            showCart()
+                            finishOrderWithCard()
+                            clearCart()
+                            waitSystem()
                             println()
                             menuPrincipal()
                         }else{
@@ -255,17 +199,15 @@ class Menus {
 
                     }
                     4->{
-                        if (Produto.verificarCarririho()){
+                        if (checkCart()){
                             println(ConsoleMenssages.pedeValorDinheiro)
                             var valorCliente = readln().toDoubleOrNull() ?:0.0
-                            if (!Produto.finalizarPedidoDinheiro(valorCliente,Produto.visualizarCarrinho())){
-                                println(ConsoleMenssages.verificarPagamento)
-                                verificarPagamento(readln().toInt())
+                            validateCustomerValue(valorCliente)
                                 Produto.limparCarrinho()
                                 Produto.esperar()
                                 println()
                                 menuPrincipal()
-                            }
+
                         }else{
                             println(ConsoleMenssages.listaVazia)
                             menuPrincipal()

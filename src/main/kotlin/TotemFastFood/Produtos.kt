@@ -35,7 +35,6 @@ class Suco():Produto(){
         this.cod = cod
         this.valorUnitario = valorUnitario
         this.quantidade = quantidade
-
     }
 }
 
