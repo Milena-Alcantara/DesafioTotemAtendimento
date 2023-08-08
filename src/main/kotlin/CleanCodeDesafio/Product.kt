@@ -1,8 +1,6 @@
 package CleanCodeDesafio
 
 
-import TotemFastFood.ConsoleMenssages
-
 abstract class Product(){
     internal var name: String = ""
     internal var code: Int = 0

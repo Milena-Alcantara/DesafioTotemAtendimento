@@ -1,7 +1,5 @@
 package CleanCodeDesafio
 
-import TotemFastFood.ConsoleMenssages
-
 class ControlCart {
     companion object{
         private var productCart = mutableListOf<Product>()

@@ -1,7 +1,5 @@
 package CleanCodeDesafio
 
-import TotemFastFood.ConsoleMenssages
-
 class OrderControl {
     companion object{
         private var orderNumber = 499

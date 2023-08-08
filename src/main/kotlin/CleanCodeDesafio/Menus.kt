@@ -1,6 +1,5 @@
-package TotemFastFood
+package CleanCodeDesafio
 
-import CleanCodeDesafio.*
 import CleanCodeDesafio.ControlCart.Companion.addToCart
 import CleanCodeDesafio.ControlCart.Companion.checkCart
 import CleanCodeDesafio.ControlCart.Companion.clearCart
@@ -11,11 +10,9 @@ import CleanCodeDesafio.FlashFoodSystem.Companion.receiveInputs
 import CleanCodeDesafio.FlashFoodSystem.Companion.requestProductCode
 import CleanCodeDesafio.FlashFoodSystem.Companion.requestQuantity
 import CleanCodeDesafio.FlashFoodSystem.Companion.waitSystem
-import CleanCodeDesafio.MilkShake
 import CleanCodeDesafio.OrderControl.Companion.finishOrderWithCard
 import CleanCodeDesafio.OrderControl.Companion.validateCustomerValue
-import CleanCodeDesafio.XSalada
-import CleanCodeDesafio.Xburguer
+import TotemFastFood.Produto
 import kotlin.NumberFormatException
 
 class Menus {
@@ -203,8 +200,8 @@ class Menus {
                             println(ConsoleMenssages.pedeValorDinheiro)
                             var valorCliente = readln().toDoubleOrNull() ?:0.0
                             validateCustomerValue(valorCliente)
-                                Produto.limparCarrinho()
-                                Produto.esperar()
+                            Produto.limparCarrinho()
+                            Produto.esperar()
                                 println()
                                 menuPrincipal()
 

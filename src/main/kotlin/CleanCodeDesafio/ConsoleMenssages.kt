@@ -1,4 +1,4 @@
-package TotemFastFood
+package CleanCodeDesafio
 
  object ConsoleMenssages{
     // Menus

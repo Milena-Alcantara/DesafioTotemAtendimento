@@ -1,5 +1,7 @@
 package TotemFastFood
 
+import CleanCodeDesafio.ConsoleMenssages
+
 open class Produto() {
    protected var nome: String = ""
    protected var cod: Int = 0
