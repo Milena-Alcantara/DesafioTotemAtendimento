@@ -12,7 +12,6 @@ import CleanCodeDesafio.FlashFoodSystem.Companion.requestQuantity
 import CleanCodeDesafio.FlashFoodSystem.Companion.waitSystem
 import CleanCodeDesafio.OrderControl.Companion.finishOrderWithCard
 import CleanCodeDesafio.OrderControl.Companion.validateCustomerValue
-import TotemFastFood.Produto
 import kotlin.NumberFormatException
 
 class Menus {
@@ -162,8 +161,8 @@ class Menus {
                     }
                     5->{
                         println(ConsoleMenssages.pedidoCancelado)
-                        Produto.limparCarrinho()
-                        Produto.esperar()
+                        clearCart()
+                        waitSystem()
                         println()
                         menuPrincipal()
                     }
@@ -200,8 +199,8 @@ class Menus {
                             println(ConsoleMenssages.pedeValorDinheiro)
                             var valorCliente = readln().toDoubleOrNull() ?:0.0
                             validateCustomerValue(valorCliente)
-                            Produto.limparCarrinho()
-                            Produto.esperar()
+                            clearCart()
+                            waitSystem()
                                 println()
                                 menuPrincipal()
 
